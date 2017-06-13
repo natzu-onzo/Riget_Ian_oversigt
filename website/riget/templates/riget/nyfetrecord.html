@@ -1,0 +1,211 @@
+{% extends 'riget/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Ny Fet Record{% endblock %}
+
+{% block menu%}
+	<li>
+		<a href="{% url 'riget:nyfetrecord' %}">Ny Record</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:fet' %}">Oversigt</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:nyfetperson' %}">Ny Patient</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:login' %}">Excel export</a>
+	</li>
+{% endblock %}
+
+{% block body %}
+<div id="formular">
+	<form action="." method="POST" class="inputform">
+	{% csrf_token %}
+		<table>
+			<tbody>
+			<tr>
+				<td>CPR.nr</td>
+				<td><input name="cpr" type="text"></td>
+				<td>Fornavn</td>
+				<td><input name="fornavn" type="text"></td>
+				<td>EfterNavn</td>
+				<td><input name="efternavn" type="text"></td>
+				<td>Alder</td>
+				<td><input name="alder" type="text"></td>
+			</tr>
+			<tr>
+				<td>Dato</td>
+				<td><input type="tekst"></td>
+				<td>Scanner</td>
+				<td>
+					<select name="scanner" id="scanner">
+						<option value=""></option>
+						<option value="PET-1">PET-1</option>
+						<option value="PET-2">PET-2</option>
+						<option value="PET-3">PET-3</option>
+						<option value="PET-4">PET-4</option>
+						<option value="PET-5">PET-5</option>
+						<option value="PET-6">PET-6</option>
+						<option value="PET-7">PET-7</option>
+						<option value="PET-MR">PET-MR</option>
+					</select>
+				</td>
+				<td>Type</td>
+				<td>
+					<select name="scan_type" id="scan_type">
+						<option value=""></option>
+						<option value="statisk">Statisk</option>
+						<option value="dynamisk">Dynamisk</option>
+					</select>
+				</td>
+				<td>Filter(mm)</td>
+				<td>
+					<select name="filter" id="filter">
+						<option value=""></option>
+						<option value="3.5">3.5</option>
+						<option value="5">5</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>PCT</td>
+				<td><input name="pct" value="1" type="checkbox" style="float:right; width:20px;"></td>
+				<td>MR-DCE</td>
+				<td><input name="MR_DCE" value="1" type="checkbox" style="float:right; width:20px;"></td>
+				<td>MR-DSC</td>
+				<td><input name="MR_DSC" value="1" type="checkbox" style="float:right; width:20px;"></td>
+			</tr>
+			<tr>
+				
+				<td>Tumottype</td>
+				<td>
+					<select name="tumor_type" id="tumpor_type">
+						<option value=""></option>
+						<option value="GBM IV">GBM IV</option>
+						<option value="HGG">HGG</option>
+						<option value="AA III">AA III</option>
+						<option value="AA II/III">AA II/III</option>
+						<option value="AA II">AA II</option>
+						<option value="AA I/II">AA I/II</option>
+						<option value="AA I">AA I</option>
+						<option value="OD III">OD III</option>
+						<option value="OD II/III">OD II/III</option>
+						<option value="OD II">OD II</option>
+						<option value="OA III">OD III</option>
+						<option value="OA II/III">OA II/III</option>
+						<option value="OA II">OA II</option>
+						<option value="LGG">LGG</option>
+						<option value="Meningeom">Meningeom</option>
+						<option value="Metastase">Metastase</option>
+						<option value="Andet">Andet</option>
+					</select>
+				</td>
+				<td colspan="4">
+					<textarea name="tumor_andet" type="tekst" placeholder="hvad/hvorfor" rows="2" style="height:100%;"></textarea></td>
+				<td>PCT</td>
+				<td>
+					<select name="kurveform" id="kurveform">
+						<option value=""></option>
+						<option value="stigende">Stigende</option>
+						<option value="faldende">Faldende</option>
+						<option value="plateau">Plateau</option>
+					</select>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	
+		<div id="checkbox">
+			1. Primær udredning:<br>
+			<input style="left:50px" type="checkbox" name="indikation_uafklaret_process" value="1" id="indikation_uafklaret_process"  >1.1 Uafklaret process<br>
+			<input type="checkbox" name="indikation_gradering" value="1" id="indikation_gradering"  >1.2 Gradering<br>
+			<input type="checkbox" name="indikation_biopsioptimering" value="1" id="indikation_biopsioptimering"  >1.3 Biopsioptimering<br>
+			<input type="checkbox" name="indikation_epi_kir" value="1" id="indikation_epi_kir"  >1.4 Epikir<br>			
+			<input type="checkbox" name="indikation_praeoperativ_planlaegning" value="1" id="indikation_praeoperativ_planlaegning"  >1.5 Præoperativ planlægning<br>
+			2. RT planlægning <input type="checkbox" name="indikation_rt_planlaegning" value="1" id="indikation_rt_planlaegning"  > <br>
+			3. Opfølgning <br>
+			<input type="checkbox" name="indikation_malign_transformation" value="1" id="indikation_malign_transformation"  >3.1 Malign Transformation<br>
+			<input type="checkbox" name="indikation_recidiv_straalefoelger" value="1" id="indikation_recidiv_straalefoelger"  >3.2 Recidiv/Strålefølger<br>
+			<input type="checkbox" name="indikation_monitorering" value="1" id="indikation_monitorering"  >3.3 Monitorering<br>
+			<input type="checkbox" name="indikation_tidlig_postop_vurdering" value="1" id="indikation_tidlig_postop_vurdering"  >3.4 Tidlig Postoperativ vurdering<br>
+			<input type="checkbox" name="indikation_pseudo_progression" value="1" id="indikation_pseudo_progression"  >3.5 Progression/Pseudoprogression<br>
+			<input type="checkbox" name="preMedPause" value="1" id="preMedPause"  >3.6 Før medicin pausering<br>
+		
+	 		<div id='projekt1'>
+				4. Projekt:
+				<select name ="indikation_projekt" id="indikation_projekt">
+					<option value='' selected ></option>
+					<option value='HGREB'>HGREB</option>
+					<option value='ALECSAT'>ALECSAT</option>
+					<option value='dce'>dce</option>
+					<option value='LGG'>LGG</option>
+					<option value='DSC'>DSC</option>
+					<option value='KING'>KING</option>
+					<option value='ALEXSAT 2'>ALEXSAT 2</option>
+					<option value='Test af MAR'>Test af MAR</option>
+					<option value='Biopsi 5 ALA'>Biopsi 5 ALA</option>
+					<option value='Recidiv'>Recidiv</option>
+					<option value='BUF'>BUF</option>
+					<option value='Idepreg'>Idepreg</option>
+					<option value='BELOB'>BELOB</option>
+					<option value='REPRO'>REPRO</option>
+					<option value='andet'>Andet projekt</option>
+				</select>
+			</div>
+			5. Andet:  &nbsp <textarea rows='1' name='indikation_andet' type='text' style ='height: auto; width: 50%;'></textarea>
+		</div>
+		
+		<table>
+		<tbody>
+			<tr>
+				<td>B avg SUV</td>
+				<td><input name="roi_b_avg" type="text" id="roi_b_avg" autocomplete="off"></td>
+				<td>SUV reshold</td>
+				<td><input name="roi_suv_threshold" type="text" id="roi_suv_threshold" autocomplete="off"></td>
+				<td>SUV Mean</td>
+				<td><input name="roi_suv_mean" type="text" id="roi_suv_mean" autocomplete="off"></td>
+				<td>Tmean/b</td>
+				<td><input name="roi_t_mean_b" type="text" id="roi_t_mean_b" autocomplete="off"></td>
+			</tr>
+			<tr>
+				<td>SUV Max</td>
+				<td><input name="roi_suv_max" type="text" id="roi_suv_max" autocomplete="off"></td>
+				<td>Tmax/B</td>
+				<td><input name="roi_t_max_b" type="text" id="roi_t_max_b" autocomplete="off"></td>
+				<td>Tumor Vol. (krit1.6)</td>
+				<td><input name="roi_tumor_vol" type="tekst" id="roi_tumor_vol" autocomplete="off"></td>
+				<td>MR T1 Kontrastop</td>
+				<td><input name="mr_t1_kontrastop" type="checkbox" value="1" style="float:right; width:20px;"></td>
+			</tr>
+			<tr>
+				<td>Uni/Multi fokal</td>
+				<td>
+					<select name="uni_multi_fokal" id="uni_multi_fokal">
+						<option value=""></option>
+						<option value="Unifokal">Unifokal</option>
+						<option value="Multifokal">Multifokal</option>
+					</select>
+				</td>
+				<td>Konklusion på follow up</td>
+				<td>
+					<select name="konklusion_followup" id="konklusion_followup">
+						<option value=""></option>
+						<option value="Progression">Progression</option>
+						<option value="Regression">Regression</option>
+						<option value="Stationaer">Stationær</option>
+						<option value="Partielt response">Partielt response</option>
+					</select>
+				</td>
+				<td>Værdier indtastet i kBq/mL</td>
+				<td><input name="kbg_ml" type="checkbox" value="1" style="float:right; width:20px;"></td>
+				<td>Interessanter</td>
+				<td><input name="interessant_case" type="checkbox" value="1" style="float:right; width:20px;"></td>
+			</tr>
+		</tbody>
+		</table>
+	</form>
+
+</div>
+
+{%endblock%}

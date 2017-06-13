@@ -1,0 +1,288 @@
+*
+{
+	padding : 0px;
+	margin  : 0px;
+	border  : 0px;
+}
+
+#box
+{
+	position     : relative;
+	top          : 0px;
+	bottom       : 0px;
+	margin-left  : auto;
+	margin-right : auto;
+	height       : auto;
+	width        : 100%;
+}
+#content
+{
+	width: 100%;
+	border : 1px solid black;
+}
+
+#header
+{
+	position : relative;
+	left     : 0px;
+	top      : 0px;
+	width    : 400px;
+	height   : 100px;
+}
+
+
+#menu
+{
+	background : #003366;
+}
+
+#menu ul
+{
+	padding     : 0px;
+	margin      : 0px;
+	list-style  : none;
+	width       : 100%;
+	height      : 21px;
+	font  : normal 8pt verdana, arial, helvetica;
+	font-weight : bold;
+}
+	
+#menu ul li
+{
+	display : block;
+	float : left;
+	position : relative;
+	width : 148px;
+}
+
+#menu ul li a
+{
+	padding : 4px;
+	display : block;
+	text-align : center;
+	text-decoration : none;
+	background : #003366;
+	text-color : #ffffff;
+	color : #ffffff;
+	width : 148px;
+	height : 13px;
+}
+
+
+/****************/
+/* forside menu */
+/****************/
+
+#main_menu 
+{
+	width : 520px;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+#forsideTable td
+{
+	width : 390px;
+	height : 70px;
+	box-shadow : 5px 5px 10px #888888;
+	padding : 6px 6px 6px 50px;
+	font-family : helvetica;
+	font-size : 24px;
+	font-weight : 500;
+}
+
+#forsideTable tr a
+{
+	display : block;
+	text-decoration : none;
+	color : #000;
+}
+
+
+/*****************/
+/* Ny Fet Record */
+/*****************/
+
+#formular
+{
+	max-width    : 1000px;
+	margin-left  : auto;
+	margin-right : auto;
+} 
+
+.inputform table td
+{
+	width : 150px;
+	border-right  : 1px solid #C1DAD7;
+	border-bottom : 1px solid #C1DAD7;
+	background : #fff;
+	padding    : 6px 6px 6px 6px;
+	color      : #6D929B;
+}
+
+.inputform input
+{
+	width : 150px;
+}
+
+.inputform select
+{
+	width : 154px;
+}
+
+.inputform textarea
+{
+	width : 98%;
+}
+
+#checkbox
+{
+	margin-left : auto;
+	margin-right : auto;
+	color : #6D929B;
+}
+
+
+#srchbar
+{
+	position : relative;
+	display : block;
+	top : 0px;
+	width : 100%;
+	height : auto;
+}
+
+
+/****************/
+/* Fet Oversigt */
+/****************/
+
+#all
+{
+	margin : 0 auto;
+	vertical-align : middle;
+	width : 480px;
+}
+
+#searchbox
+{
+	width : 150px;
+	border-style : 1px solid #DDD;
+	padding : 3px;
+}
+
+#select1
+{
+	width : 100px;
+	padding : 1px;
+}
+
+#select2
+{
+	width : 100px;
+	padding : 1px;
+}
+
+#select3
+{
+	width : 100px;
+	padding : 1px;
+}
+
+#select4
+{
+	width : 100px;
+	padding : 1px;
+}
+
+#usertable
+{
+	margin-left : auto;
+	margin-right : auto;
+}
+
+#usertable td
+{
+	border-right : 0px;
+	border-bottom : 0px;
+}
+
+#usertable th
+{
+	font : bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color : #6D929B;
+	border-right : 1px solid #C1DAD7;
+	border-bottom : 1px solid #C1DAD7;
+	border-top : 1px Solid #C1DAD7;
+	letter-spacing : 2px;
+	text-transform : uppercase;
+	text-align : left;
+	padding : 6px 6px 6px 12px;
+	background : #CAE8EA;
+}
+
+#usertable th a:link
+{
+	display : block;
+	text-decoration : none;
+	color : #6D929B;
+	width : 100%;
+}
+
+#usertable td a:link
+{
+	display : block;
+	text-decoration : none;
+	color : #6D929B;
+	width : 100%;
+}
+
+#usertable td
+{
+	border-right : 1px solid #C1DAD7;
+	border-bottom : 1px solid #C1DAD7;
+	background : #fff;
+	padding : 6px 6px 6px 12px;
+	color : #6D929B;
+}
+
+/* ny FET person */
+
+.inputformFET table
+{
+	margin-left : auto;
+	margin-right : auto;
+}
+
+.inputformFET table td
+{
+	width : 150px;
+	border-right-width : 0px;
+	border-bottom : 1px solid #C1DAD7;
+	background : #fff;
+	padding : 6px 6px 6px 6px;
+	color : #6D929B;
+}
+
+.messageFET
+{
+	margin-right : auto;
+	margin-left :  auto;
+	padding : 10px;
+}
+
+table tr td a
+{
+	display: block;
+	width:100%;
+	height:100%;
+	text-decoration:none;
+}
+
+table tr td
+{
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}

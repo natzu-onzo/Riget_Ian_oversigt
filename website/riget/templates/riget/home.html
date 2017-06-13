@@ -1,0 +1,43 @@
+{% extends 'riget/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block menu%}
+	<a class="w3-bar-item w3-button" href="{% url 'riget:login' %}">LS</a>
+	<a class="w3-bar-item w3-button" href="{% url 'riget:pib' %}">PiB</a>
+	<a class="w3-bar-item w3-button" href="{% url 'riget:fet' %}">FET</a>
+	<a class="w3-bar-item w3-button" href="{% url 'riget:login' %}">Admin</a>
+{% endblock %}
+
+{% block body %}
+<div id="main_menu">
+	
+	<table id="forsideTable" cellspacing="10">
+	<tbody>
+		<tr>
+			<td style="background-color: #476D9B">
+				<a href="{% url 'riget:home' %}">Learning system</a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td style="background-color: #B8D3EF">
+				<a href="{% url 'riget:pib' %}">PiB</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #95BAEC">
+				<a href="{% url 'riget:fet' %}">FET</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #55BAEC">
+				<a href="{% url 'riget:home' %}">Adminstrate user</a>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+
+{%endblock%}

@@ -1,0 +1,156 @@
+{% extends 'riget/base.html' %}
+{% load staticfiles %}
+
+{% block Header %}
+
+<script>
+	var myTextExtraction = function(node) 
+	{ 
+    		// extract data from markup and return it 
+    		return node.childNodes[0].innerHTML; 
+	} 
+	$(document).ready(function() {
+			$("#usertable").tablesorter( {textExtraction: myTextExtraction} );
+		}
+	
+	);
+
+	var options = {
+		valueNames: [ 'CPR', 'Name' ]
+	};
+
+	var userList = List('users', options);
+
+</script>
+
+{% endblock %}
+
+
+{% block title %}FET Oversigt{% endblock %}
+
+
+
+{% block menu%}
+	<li>
+		<a href="{% url 'riget:nyfetrecord' %}">Ny Record</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:fet' %}">Oversigt</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:nyfetperson' %}">Ny Patient</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:home' %}">Excel export</a>
+	</li>
+{% endblock %}
+
+{% block body %}
+<div id="all">
+
+	<input id="searchbox" placeholder="navn el.cpr" value="" type="text">
+		
+	<select id="select1" name="scanner">
+		<option value="Scanner">Scanner</option>
+		<option value="PET-1">PET-1</option> 
+		<option value="PET-2">PET-2</option> 
+		<option value="PET-3">PET-3</option> 
+		<option value="PET-4">PET-4</option> 
+		<option value="PET-5">PET-5</option> 
+		<option value="PET-6">PET-6</option>
+		<option value="PET-MR">PET-MR</option>
+	</select>
+	
+	<select id="select2" name="scantype">
+		<option value="Scantype">Scantype</option>
+		<option value="Statisk">Statisk</option>
+		<option value="Dynamisk">Dynamisk</option>
+	</select>
+	
+	<select id="select3" name="tumortype">
+		<option value="Tomur Type">Tomur tupe</option>
+		<option value="GBM IV">GBM IV</option>
+		<option value="HGG">HGG</option>
+		<option value="AA III">AA III</option> 
+		<option value="AA II/III">AA II/III</option> 
+		<option value="AA II">AA II</option> 
+		<option value="AA I/II">AA I/II</option> 
+		<option value="AA I">AA I</option> 
+		<option value="OD III">OD III</option>
+		<option value="OD II/III">OD II/III</option>
+		<option value="OD II">OD II</option> 
+		<option value="OA III">OA III</option> 
+		<option value="OA II/III">OA II/III</option> 
+		<option value="OA II">OA II</option> 
+		<option value="LGG">LGG</option> 
+		<option value="Meningeom">Meningeom</option>
+		<option value="Metastase">Metastase</option>
+		<option value="Andet">Andet</option>	
+	</select>
+
+	<input id="age" name="age" type="text" placeholder="alder interval (f.eks. 1-19)" value="">
+	
+	<select id="select4" name="indikation">
+		<option value="Indikation">Indikation</option>
+		<option value="Primaeudregning">Primæreudregning</option>
+		<option value="RT planlaegning">RT planlægning</option>
+		<option value="Opfoelgning">Opfølgning</option>
+		<option value="Projekt">Projekt</option>
+		<option value="Andet">Andet</option>
+	</select>
+	
+	<div id="table"></div>
+</div>
+<table class="usertable">
+	<tbody>
+		<td> Total nr formulars in search:</td>
+		<td>{{ list_r }}</td>
+		<td>Total nr patients in search:</td>
+		<td>{{ list_p }}</td>
+	</tbody>
+</table>
+
+<div id="users">
+<table id="usertable" class="tablesorter">
+	<thead>
+		<tr>
+			<th>CPR</a></th>
+			<th>fornavn</a></th>
+			<th>efternavn</a></th>
+			<th>alder</a></th>
+			<th>dato</a></th>
+			<th>scanner</a></th>
+			<th>tumor</a></th>
+			<th>tmean/b</a></th>
+			<th>tmax/b</a></th>
+			<th>tumor vol.</a></th>
+			<th>Projekt</a></th>
+			<th>info</a></th>
+			<th>interessante</a></th>
+		</tr>
+	</thead>
+	<tbody class="list">
+		{% for fet in fetlist%}
+		<tr>
+			<td class="CPR"><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.CPR }} </a></td>
+			<td class="Name"><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.firstname }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.lastname }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.age }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.scandato|date:"d-m-Y" }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.scanner }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.tumor_type }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.roi_t_mean_b }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.roi_t_max_b }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.roi_tumor_vol }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.indikation_projekt }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.filter_t }} </a></td>
+			<td><a href="{% url 'riget:fetview' CPR=fet.CPR %}">{{ fet.MR_DCE }} </a></td>
+		</tr>
+		{% endfor %}
+
+	</tbody>
+</table>
+</div>
+</div>
+
+{%endblock%}

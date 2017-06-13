@@ -1,0 +1,96 @@
+{% extends 'riget/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block menu%}
+	<li>
+		<a href="{% url 'riget:nyfetrecord' %}">Ny Record</a>
+	</li>
+	<li>		
+		<a href="{% url 'riget:fet' %}">Oversigt</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:login' %}">Mine formulare</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:home' %}">Excel export</a>
+	</li>
+
+{% endblock %}
+
+{% block body %}
+<div class="" id="fetpatient">
+
+<table id="usertable">
+	<tr><td colspan="5" style="border-width:0px; height:20px; font-size:20px;">Patient</td></tr>
+	<tr>
+		<th>cpr</th>
+		<th>navn</th>
+		<th>FDG</th>
+		<th>avastin</th>
+		<th>Sidst ændret af</th>
+	</tr>
+	<tr>
+		{% for p in person %}
+		<td><a href="{% url 'riget:fetchang' CPR=p.CPR %}">{{ p.CPR }}</a></td>
+		<td><a href="{% url 'riget:fetchang' CPR=p.CPR %}">{{ p.firstname }}  {{p.lastname}}</a></td>
+		<td><a href="{% url 'riget:fetchang' CPR=p.CPR %}">{{ p.FDG }}</a></td>
+		<td><a href="{% url 'riget:fetchang' CPR=p.CPR %}">{{ p.avastin }}</a></td>
+		<td><a href="{% url 'riget:fetchang' CPR=p.CPR %}">{{ p.lasrChangedBy }}</a></td>
+		{% endfor %}
+	</tr>
+</table>
+<table id="usertable">
+	<thead>
+		<tr>
+			<td colspan="5" style="border-width:0px; height:20px; font-size:20px;">Records</td>
+		</tr>
+		<tr>
+			<td colspan="6" style="border-width:0px; color:#ffffff; background=#ffffff;"></th>
+			<th><a href="">Graph</a></th>
+			<th><a href="">Graph</a></th>
+			<th><a href="">Graph</a></th>
+			<td colspan="2" style="border-width:0px; color:#ffffff; background=#ffffff;"></th>
+		</tr>
+		<tr>
+			<th>Dato</th>
+			<th>Alder</th>
+			<th>Scanner</th>
+			<th>Scantype</th>
+			<th>TumorType</th>
+			<th>KurveForm</th>
+			<th>Tmean/B</th>
+			<th>TMax/B</th>
+			<th>Tumor Vol. Krit. 1.6</th>
+			<th>Projekt</th>
+			<th>Interresant</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for r in records %}
+		<tr>
+		<td><a href="{% url 'riget:fet' %}">{{ r.scandato|date:"d-m-Y" }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.age }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.scanner }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.scantype_type }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.tumor_type }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.kurveform }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.roi_t_mean_b }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.roi_t_max_b }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.roi_tumor_vol }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.indikation_projekt }}</a></td>	
+		<td><a href="{% url 'riget:fet' %}">{{ r.interessant_case }}</a></td>	
+		</tr>
+		{% endfor %}
+
+	
+	</tbody>
+
+</table>
+
+
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,63 @@
+{% extends 'riget/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Ny Fet Record{% endblock %}
+
+{% block menu%}
+	<li>
+		<a href="{% url 'riget:nyfetrecord' %}">Ny Record</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:fet' %}">Oversigt</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:nyfetperson' %}">Ny Patient</a>
+	</li>
+	<li>
+		<a href="{% url 'riget:login' %}">Excel export</a>
+	</li>
+{% endblock %}
+
+{% block body %}
+	<div class="messageFET">
+		{% if done %}
+			<h3>{{ done }}</h3>
+		{% endif %}
+	</div>
+
+	<form action="." method="POST" class="inputformFET">
+	{% csrf_token %}
+		<input name="submitted" value="TRUE" type="hidden">
+		<table>
+			<tbody>
+				<tr>
+					<td>CPR</td>
+					<td><input name="CPR" type="text"></td>
+				</tr>
+				<tr>
+					<td>Navn</td>
+					<td><input name="firstname" type="text"></td>
+					<td><input name="lastname" type="text"></td>
+				</tr>
+				<tr>
+					<td>FDG</td>
+					<input name="FDG" value="False" type="hidden">
+					<td><input id="x1" name="FDG" value="True" td="" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>AVASTIN</td>
+					<input name="avastin" value="False" type="hidden">
+					<td><input id="x1" name="avastin" value="True" td="" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td><style="border-width : 0px;"> </td>
+					<td colspan="1" style="border-width : 0px;">
+						<input style="float:left; width:50%;" onclick="opdateAlert()" value="Opret" type="submit">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</form>
+
+{%endblock%}

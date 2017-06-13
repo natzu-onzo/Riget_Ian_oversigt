@@ -1,0 +1,102 @@
+{% extends 'riget/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block menu%}
+	<a class="w3-bar-item w3-button" href="{% url 'riget:login' %}">Fyld formular</a>
+	<a class="w3-bar-item w3-button" href="{% url 'riget:pib' %}">Alle Patienter</a>
+	<a class="w3-bar-item w3-button" href="{% url 'riget:login' %}">Projekter</a>
+	<a class="w3-bar-item w3-button" href="{% url 'riget:login' %}">Mine formulare</a>
+	<a class="w3-bar-item w3-button" href="{% url 'riget:home' %}">Excel export</a>
+{% endblock %}
+
+{% block body %}
+<div class="w3-container w3-cell" id="srchbar">
+
+	<form action="." method="POST" class="w3-container w3-cell w3-row-padding w3-padding">
+		<div class="w3-col w3-cell-middle" style="">
+		<input class="w3-input w3-border" type="text" style="width:200px">
+		</div>
+
+		<div class="w3-col w3-cell-middle" style="">
+		<select class="w3-select" name="option">
+			<option value="">Indikation</option>
+			<option value="1">Tidlig AD/MCI</option> 
+			<option value="2">Atypisk AD</option> 
+			<option value="3">Blandet ætiologi</option> 
+			<option value="4">Arvelig demens</option> 
+			<option value="5">Etniske årsager</option> 
+			<option value="6">Amyloid angiopati</option>
+		</select>
+		</div>
+	
+		<div class="w3-col w3-cell-middle" style="">
+		<select class="w3-select" name="option">
+			<option value="">Amyloid status</option>
+			<option value="1"> Positiv</option>
+			<option value="2"> Negativ</option>
+		</select>
+		</div>
+
+		<div class="w3-col w3-cell-middle" style="">
+			<p>Total nr formulars in search: 123</p>
+		</div>
+		<div class="w3-col w3-cell-middle" style="">
+			Total nr patients in search: 312
+		</div>
+
+	</form> 
+</div>
+
+<div class="w3-container w3-cell" id="pslist">
+	
+	<table class="w3-table-all" style="width:100%">
+		<tr class="w3-pale-blue w3-margin">
+			<th>CPR</th>
+			<th>Fornavn</th>
+			<th>Efternavn</th>
+			<th>Dato for seneste</th>
+			<th>SURV for seneste</th>
+			<th>Seneste lavet af</th>
+			<th>Antal skanninger</th>
+			<th>Alder ved skanning</th>
+			<th>Interessant</th>
+		</tr>
+		<tr>
+			<td><a href="#">123456789 </a></td>
+			<td><a href="#">David</a></td>
+			<td><a href="#">Jørgensen</a></td>
+			<td><a href="#">23-08-2013</a></td>
+			<td><a href="#">1.15</a></td>
+			<td><a href="#">ianlaw</a></td>
+			<td><a href="#">1</a></td>
+			<td><a href="#">61</a></td>
+			<td><a href="#">Nej</a></td>
+		</tr>
+		<tr>
+			<td><a href="#">123456789 </a></td>
+			<td><a href="#">David</a></td>
+			<td><a href="#">Jørgensen</a></td>
+			<td><a href="#">23-08-2013</a></td>
+			<td><a href="#">1.15</a></td>
+			<td><a href="#">ianlaw</a></td>
+			<td><a href="#">1</a></td>
+			<td><a href="#">61</a></td>
+			<td><a href="#">Nej</a></td>
+		</tr>
+		<tr>
+			<td><a href="#">123456789 </a></td>
+			<td><a href="#">David</a></td>
+			<td><a href="#">Jørgensen</a></td>
+			<td><a href="#">23-08-2013</a></td>
+			<td><a href="#">1.15</a></td>
+			<td><a href="#">ianlaw</a></td>
+			<td><a href="#">1</a></td>
+			<td><a href="#">61</a></td>
+			<td><a href="#">Nej</a></td>
+		</tr>
+	</table>
+</div>
+
+{%endblock%}
